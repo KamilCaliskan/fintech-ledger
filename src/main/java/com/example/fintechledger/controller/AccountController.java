@@ -1,6 +1,7 @@
 package com.example.fintechledger.controller;
 
 import com.example.fintechledger.model.Account;
+import com.example.fintechledger.model.Transaction;
 import com.example.fintechledger.service.AccountService;
 import com.example.fintechledger.dto.TransferRequest;
 import org.springframework.web.bind.annotation.*;
@@ -41,11 +42,19 @@ public class AccountController {
 
     @PostMapping("/transfer")
     public ResponseEntity<Void> transferMoney(@RequestBody TransferRequest request) {
-        accountService.transferMoney(
+        // Use the logging version to record failures
+        accountService.transferMoneyWithLogging(
             request.getFromAccountId(),
             request.getToAccountId(),
             request.getAmount()
         );
         return ResponseEntity.ok().build();
+    }
+
+    // New endpoint: get transaction history for an account
+    @GetMapping("/{id}/transactions")
+    public ResponseEntity<List<Transaction>> getAccountTransactions(@PathVariable Long id) {
+        List<Transaction> transactions = accountService.getTransactionsForAccount(id);
+        return ResponseEntity.ok(transactions);
     }
 }
