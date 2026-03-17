@@ -9,3 +9,11 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
     List<Transaction> findByFromAccountIdOrToAccountIdOrderByTimestampDesc(Long fromAccountId, Long toAccountId);
 }
+
+package com.example.fintechledger.model;
+
+public enum TransactionStatus {
+     PENDING,
+     COMPLETED,
+     FAILED
+}

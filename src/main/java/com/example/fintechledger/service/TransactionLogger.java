@@ -3,13 +3,13 @@ package com.example.fintechledger.service;
 import com.example.fintechledger.model.Transaction;
 import com.example.fintechledger.model.TransactionStatus;
 import com.example.fintechledger.repository.TransactionRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Service
+@Component
 public class TransactionLogger {
     private final TransactionRepository transactionRepository;
 
@@ -22,7 +22,7 @@ public class TransactionLogger {
                                       BigDecimal amount, String failureReason) {
         Transaction failedTx = new Transaction(fromAccountId, toAccountId, amount,
                 LocalDateTime.now(), TransactionStatus.FAILED);
-        // Optionally store failure reason in a new field; for now just save.
+        // You can extend Transaction entity to store failureReason if needed
         transactionRepository.save(failedTx);
     }
 }
