@@ -1,14 +1,7 @@
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface AccountRepository extends JpaRepository<Account, Long> {
-    // Standard CRUD methods are inherited automatically
-}
-/package com.example.fintechledger.model;
+package com.example.fintechledger.model;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.model.Account;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,9 +14,10 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)          // ensures owner is not null in DB
     private String owner;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 19, scale = 2)  // proper money storage
     private BigDecimal balance;
 
     // Constructors

@@ -1,4 +1,5 @@
 package com.example.fintechledger.repository;
+package com.example.fintechledger.model;
 
 import com.example.fintechledger.model.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +11,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     List<Transaction> findByFromAccountIdOrToAccountIdOrderByTimestampDesc(Long fromAccountId, Long toAccountId);
 }
 
-package com.example.fintechledger.model;
 
 public enum TransactionStatus {
      PENDING,
