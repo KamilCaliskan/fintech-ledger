@@ -1,6 +1,6 @@
 # FinTech Ledger API
 
-A backend service for a simple ledger system with account transfers, transaction logging, and JWT authentication. Built with Spring Boot, PostgreSQL, and Testcontainers for integration tests.
+A simple ledger system for account management, money transfers, transaction logging, and JWT‑based authentication. Built with Spring Boot, PostgreSQL, and Testcontainers.
 
 ## Technologies
 
